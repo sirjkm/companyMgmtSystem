@@ -5,12 +5,12 @@ USE company_db;
 
 CREATE TABLE allEmployees (
     position INT NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR(25) NULL,
-    last_name VARCHAR(25) NULL,
-    title VARCHAR(50) NULL,
-    department VARCHAR(50) NULL,
-    salary INT NULL,
-    manager VARCHAR(50) NULL,
+    first_name VARCHAR(25) NOT NULL,
+    last_name VARCHAR(25) NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    department VARCHAR(50) NOT NULL,
+    salary INT NOT NULL,
+    manager VARCHAR(50) NOT NULL,
     PRIMARY KEY (position)
 );
 
