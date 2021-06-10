@@ -4,23 +4,23 @@
     "description": "* Employee Management System",
     "main": "allEmployees.js",
     "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1",
-    "start": "node allEmployees.js"
+        "test": "echo \\\"Error: no test specified\\\" && exit 1",
+        "start": "node index.js"
     },
     "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sirjkm/employeeManagementSystem.git"
+        "type": "git",
+        "url": "git+https://github.com/sirjkm/employeeManagementSystem.git"
     },
     "author": "Jason Manning",
     "license": "ISC",
     "bugs": {
-    "url": "https://github.com/sirjkm/employeeManagementSystem/issues"
+        "url": "https://github.com/sirjkm/employeeManagementSystem/issues"
     },
     "homepage": "https://github.com/sirjkm/employeeManagementSystem#readme",
     "dependencies": {
-    "console.table": "^0.10.0",
-    "express": "^4.17.1",
-    "inquirer": "^8.1.0",
-    "mysql": "^2.18.1"
+        "console.table": "^0.10.0",
+        "express": "^4.17.1",
+        "inquirer": "^8.1.0",
+        "mysql": "^2.18.1"
     }
 }

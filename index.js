@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const cTable = require("console.table");
+const { isBuffer } = require('util');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -20,18 +21,9 @@ const manageDB = () => {
                 'Add a department',
                 'Add a role',
                 'Add an employee',
-                'View a department',
-                'View a role',
-                'View an employee',
-                'Update a department',
-                'Update a role',
-                'Update an employee',
-                'Delete a department',
-                'Delete a role',
-                'Delete an employee',
-                'View total budget',
-                'View budget by department',
-                'View budget by role',
+                'View all departments',
+                'View all roles',
+                'View all employees',
                 'Exit',
             ],
         })
@@ -46,41 +38,14 @@ const manageDB = () => {
                 case 'Add an employee':
                     addEmployee();
                     break;
-                case 'View a department':
+                case 'View all departments':
                     viewDepartment();
                     break;
-                case 'View a role':
+                case 'View all roles':
                     viewRole();
                     break;
-                case 'View an employee':
+                case 'View all employees':
                     viewEmployee();
-                    break;
-                case 'Update a department':
-                    updateDepartment();
-                    break;
-                case 'Update a role':
-                    updateRole();
-                    break;
-                case 'Update an employee':
-                    updateEmployee();
-                    break;
-                case 'Delete a department':
-                    deleteDepartment();
-                    break;
-                case 'Delete a role':
-                    deleteRole();
-                    break;
-                case 'Delete an employee':
-                    deleteEmployee();
-                    break;
-                case 'View total budget':
-                    totalBudget();
-                    break;
-                case 'View budget by department':
-                    departmentBudget();
-                    break;
-                case 'View budget by role':
-                    roleBudget();
                     break;
                 case 'Exit':
                     connection.end();
@@ -188,24 +153,34 @@ const viewDepartment = () => {
 };
 
 
-// const viewRole = () => {};
+const viewRole = () => {
+    inquirer
+        .prompt({
+            name: 'view_role',
+            type: 'confirm',
+            message: 'View all roles?'
+        })
+        .then((answer) => {
+            connection.query('SELECT title FROM allEmployees', function (err, results, fields) {
+                if(err) throw err;
+                console.table(results);
+                manageDB();
+            });
+        });
+};
 
-// const viewEmployee = () => {};
-
-// const updateDepartment = () => {};
-
-// const updateRole = () => {};
-
-// const updateEmployee = () => {};
-
-// const deleteDepartment = () => {};
-
-// const deleteRole = () => {};
-
-// const deleteEmployee = () => {};
-
-// const totalBudget = () => {};
-
-// const departmentBudget = () => {};
-
-// const roleBudget = () => {};
+const viewEmployee = () => {
+    inquirer
+        .prompt({
+            name: 'view_empoyee',
+            type: 'confirm',
+            message: 'View all employees?'
+        })
+        .then((answer) => {
+            connection.query('SELECT first_name, last_name FROM allEmployees', function (err, results, fields) {
+                if(err) throw err;
+                console.table(results);
+                manageDB();
+            });
+        });
+};
